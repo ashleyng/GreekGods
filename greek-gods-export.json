@@ -1,0 +1,44 @@
+{
+  "Apollo" : {
+    "image" : "",
+    "rep" : ["music", "truth and prophecy", "healing", "sun and light", "plague", "poetry"],
+    "roman" : "Apollo",
+    "symbol" : ["lyre", "laurel wreath", "python", "raven", "bow and arrows"]
+  },
+  "Artemis" : {
+    "image" : "",
+    "rep" : ["the hunt", "wild animals", "wilderness", "childbirth", "virginity", "protector of young girls", "bringing and relieving disease in women"],
+    "roman" : "Diana",
+    "symbol" : ["bow", "arrows", "stag", "hunting dog", "moon"]
+  },
+  "Athena" : {
+    "image" : "",
+    "rep" : ["wisdom", "courage", "inspiration", "civilization", "law and justice", "mathematics", "strength", "war strategy", "the arts", "crafts", "skill"],
+    "roman" : "Minerva",
+    "symbol" : [ "owls", "olive tree", "snakes", "Aegis", "armor", "helmet", "spears", "gorgoneion" ]
+  },
+  "Hades" : {
+    "image" : "",
+    "rep" : ["underworld"],
+    "roman" : "Dis Pater",
+    "symbol" : ["cerberus", "drinking horn", "scepter", "cypress", "narcissus", "key"]
+  },
+  "Hera" : {
+    "image" : "",
+    "rep" : ["women", "marriage"],
+    "roman" : "Juno",
+    "symbol" : [ "pomegranate", "peacock", "feather", "diadem", "cow", "lily", "lotus", "cuckoo", "panther", "scepter", "throne", "lion" ]
+  },
+  "Poseidon" : {
+    "image" : "",
+    "rep" : ["Sea"],
+    "roman" : "Neptune",
+    "symbol" : [ "trident", "fish", "dolphin", "horse", "bull" ]
+  },
+  "Zeus" : {
+    "image" : "",
+    "rep" : ["Sky", "Thunder"],
+    "roman" : "Jupiter",
+    "symbol" : [ "thunderbolt", "eagle", "bull", "oak" ]
+  }
+}
