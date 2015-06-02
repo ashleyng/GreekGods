@@ -8,6 +8,7 @@
 
 #import "GreekGodsTVC.h"
 #import <Firebase/Firebase.h>
+#import "GreekGodDetailVC.h"
 
 @interface GreekGodsTVC ()
 
@@ -77,27 +78,27 @@
 
 
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    // get index of selected row
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    
+    if (indexPath ) {
+        if ([segue.identifier isEqualToString:@"Detail View"]) {
+            if ([segue.destinationViewController isKindOfClass:[GreekGodDetailVC class]]) {
+                GreekGodDetailVC *gvc = segue.destinationViewController;
+                gvc.godData = self.data[self.keys[indexPath.row]];
+                gvc.name = self.keys[indexPath.row];
+            }
+        }
+    }
 }
-*/
+
 
 @end

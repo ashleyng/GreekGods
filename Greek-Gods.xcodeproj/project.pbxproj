@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B6AE7B78A4D0D5BA16CFD54B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A2FD5187C16CFCA044510F /* libPods.a */; };
+		D83318E11B1D34490032BF6F /* GreekGodsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D83318E01B1D34490032BF6F /* GreekGodsTVC.m */; };
+		D83318E71B1D48140032BF6F /* GreekGodDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D83318E61B1D48140032BF6F /* GreekGodDetailVC.m */; };
 		D85856791B1D2A390032DD21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D85856781B1D2A390032DD21 /* main.m */; };
 		D858567C1B1D2A390032DD21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D858567B1B1D2A390032DD21 /* AppDelegate.m */; };
 		D858567F1B1D2A390032DD21 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D858567E1B1D2A390032DD21 /* ViewController.m */; };
@@ -29,6 +31,10 @@
 
 /* Begin PBXFileReference section */
 		3B260FB1120A22DDA72A5A99 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D83318DF1B1D34490032BF6F /* GreekGodsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreekGodsTVC.h; sourceTree = "<group>"; };
+		D83318E01B1D34490032BF6F /* GreekGodsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreekGodsTVC.m; sourceTree = "<group>"; };
+		D83318E51B1D48140032BF6F /* GreekGodDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreekGodDetailVC.h; sourceTree = "<group>"; };
+		D83318E61B1D48140032BF6F /* GreekGodDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreekGodDetailVC.m; sourceTree = "<group>"; };
 		D85856731B1D2A390032DD21 /* Greek-Gods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Greek-Gods.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85856771B1D2A390032DD21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D85856781B1D2A390032DD21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -109,6 +115,10 @@
 				D858567B1B1D2A390032DD21 /* AppDelegate.m */,
 				D858567D1B1D2A390032DD21 /* ViewController.h */,
 				D858567E1B1D2A390032DD21 /* ViewController.m */,
+				D83318DF1B1D34490032BF6F /* GreekGodsTVC.h */,
+				D83318E01B1D34490032BF6F /* GreekGodsTVC.m */,
+				D83318E51B1D48140032BF6F /* GreekGodDetailVC.h */,
+				D83318E61B1D48140032BF6F /* GreekGodDetailVC.m */,
 				D85856801B1D2A390032DD21 /* Main.storyboard */,
 				D85856831B1D2A390032DD21 /* Images.xcassets */,
 				D85856851B1D2A390032DD21 /* LaunchScreen.xib */,
@@ -279,6 +289,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D858567F1B1D2A390032DD21 /* ViewController.m in Sources */,
+				D83318E71B1D48140032BF6F /* GreekGodDetailVC.m in Sources */,
+				D83318E11B1D34490032BF6F /* GreekGodsTVC.m in Sources */,
 				D858567C1B1D2A390032DD21 /* AppDelegate.m in Sources */,
 				D85856791B1D2A390032DD21 /* main.m in Sources */,
 			);
