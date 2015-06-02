@@ -10,4 +10,8 @@
 
 @interface FormVC : UIViewController
 
+@property (nonatomic, strong) NSDictionary *data; // only for edit form
+@property (nonatomic, strong) NSString *name; // only for edit form
+@property BOOL isEditForm;
+
 @end

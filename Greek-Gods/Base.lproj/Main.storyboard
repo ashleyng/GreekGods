@@ -51,7 +51,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="qSQ-G0-4Yn" kind="show" identifier="Detail View" id="dYS-z6-V3V"/>
+                                    <segue destination="qSQ-G0-4Yn" kind="show" identifier="Detail View" id="gba-3k-YaX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -63,7 +63,7 @@
                     <navigationItem key="navigationItem" id="Znp-t4-hEc">
                         <barButtonItem key="rightBarButtonItem" title="+" id="Gyv-e1-wW4">
                             <connections>
-                                <segue destination="MEv-Rm-Wbp" kind="show" id="Zlw-97-9ry"/>
+                                <segue destination="KPe-RA-bER" kind="show" id="soI-Xe-h8y"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -111,7 +111,8 @@
                         <color key="backgroundColor" red="0.69851271151978789" green="0.74450658754605648" blue="0.82444609788359791" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="4kT-GL-WgU">
-                        <barButtonItem key="rightBarButtonItem" title="Submit" id="bbi-lw-BcU">
+                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="M5d-Yb-U31"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="bbi-lw-BcU">
                             <connections>
                                 <action selector="submitForm:" destination="KPe-RA-bER" id="DSY-MY-OTK"/>
                             </connections>
@@ -122,6 +123,7 @@
                         <outlet property="nameField" destination="yoN-gy-Rha" id="9WD-NE-QXz"/>
                         <outlet property="repField" destination="2d9-35-pP7" id="FHc-IV-cFH"/>
                         <outlet property="romanField" destination="OeK-LQ-3Rp" id="xDT-e2-TMe"/>
+                        <outlet property="submitButton" destination="bbi-lw-BcU" id="5vd-4I-aFR"/>
                         <outlet property="symbolField" destination="igP-4o-O1L" id="l0L-fJ-Ho0"/>
                         <segue destination="sa2-ZW-HdE" kind="unwind" identifier="submitForm" unwindAction="prepareForUnwind:" id="1JW-Hu-3xJ"/>
                     </connections>
@@ -193,6 +195,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="dgz-dW-F0q">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="MGg-v4-GNs">
+                            <connections>
+                                <segue destination="KPe-RA-bER" kind="show" identifier="Edit Data" id="LsA-Bl-t7f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="nameLabel" destination="awV-0K-PND" id="DZT-9P-TlQ"/>
@@ -203,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vBZ-Bd-89w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3199.5" y="715.5"/>
+            <point key="canvasLocation" x="3786.5" y="715.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZjJ-qO-TEL">
@@ -224,23 +233,8 @@
             </objects>
             <point key="canvasLocation" x="1735" y="325"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="hdu-Up-DgN">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MEv-Rm-Wbp" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iH4-qf-d9W">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="KPe-RA-bER" kind="relationship" relationship="rootViewController" id="0zE-Ck-ew0"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qik-QW-Vcw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3199.5" y="-66.5"/>
-        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="LsA-Bl-t7f"/>
+    </inferredMetricsTieBreakers>
 </document>

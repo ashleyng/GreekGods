@@ -7,6 +7,7 @@
 //
 
 #import "GreekGodDetailVC.h"
+#import "FormVC.h"
 
 @interface GreekGodDetailVC ()
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
@@ -48,6 +49,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"Edit Data"]) {
+        if ([segue.destinationViewController isKindOfClass:[FormVC class]]) {
+            FormVC *fvc = segue.destinationViewController;
+            fvc.data = self.godData;
+            fvc.name = self.name;
+            fvc.isEditForm = YES;
+        }
+    }
+}
+
 
 
 @end
