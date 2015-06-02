@@ -51,7 +51,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="qSQ-G0-4Yn" kind="show" identifier="Detail View" id="d5d-ex-fl7"/>
+                                    <segue destination="qSQ-G0-4Yn" kind="show" identifier="Detail View" id="dYS-z6-V3V"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -61,13 +61,75 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Znp-t4-hEc">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="Gyv-e1-wW4"/>
+                        <barButtonItem key="rightBarButtonItem" title="+" id="Gyv-e1-wW4">
+                            <connections>
+                                <segue destination="MEv-Rm-Wbp" kind="show" id="Zlw-97-9ry"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6mC-X6-9Ly" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2546.5" y="324.5"/>
+        </scene>
+        <!--FormVC-->
+        <scene sceneID="N0c-9r-Ygn">
+            <objects>
+                <viewController id="KPe-RA-bER" customClass="FormVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vCp-gW-JnU"/>
+                        <viewControllerLayoutGuide type="bottom" id="8ek-fL-Yxp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KIv-1Q-Ptm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yoN-gy-Rha">
+                                <rect key="frame" x="16" y="96" width="343" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Roman Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OeK-LQ-3Rp">
+                                <rect key="frame" x="16" y="134" width="343" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Representations" translatesAutoresizingMaskIntoConstraints="NO" id="2d9-35-pP7">
+                                <rect key="frame" x="16" y="172" width="343" height="72"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Symbols" translatesAutoresizingMaskIntoConstraints="NO" id="igP-4o-O1L">
+                                <rect key="frame" x="16" y="252" width="343" height="72"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.69851271151978789" green="0.74450658754605648" blue="0.82444609788359791" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4kT-GL-WgU">
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="bbi-lw-BcU">
+                            <connections>
+                                <action selector="submitForm:" destination="KPe-RA-bER" id="DSY-MY-OTK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="nameField" destination="yoN-gy-Rha" id="9WD-NE-QXz"/>
+                        <outlet property="repField" destination="2d9-35-pP7" id="FHc-IV-cFH"/>
+                        <outlet property="romanField" destination="OeK-LQ-3Rp" id="xDT-e2-TMe"/>
+                        <outlet property="symbolField" destination="igP-4o-O1L" id="l0L-fJ-Ho0"/>
+                        <segue destination="sa2-ZW-HdE" kind="unwind" identifier="submitForm" unwindAction="prepareForUnwind:" id="1JW-Hu-3xJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U03-JM-y7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="sa2-ZW-HdE" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3786.5" y="-66.5"/>
         </scene>
         <!--Greek God DetailVC-->
         <scene sceneID="TGh-9H-fDu">
@@ -141,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vBZ-Bd-89w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3209.5" y="715.5"/>
+            <point key="canvasLocation" x="3199.5" y="715.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZjJ-qO-TEL">
@@ -161,6 +223,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T3r-ay-qs7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1735" y="325"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hdu-Up-DgN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MEv-Rm-Wbp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iH4-qf-d9W">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KPe-RA-bER" kind="relationship" relationship="rootViewController" id="0zE-Ck-ew0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qik-QW-Vcw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3199.5" y="-66.5"/>
         </scene>
     </scenes>
 </document>

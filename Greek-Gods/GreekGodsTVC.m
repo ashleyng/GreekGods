@@ -29,6 +29,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = @"Greek Gods";
+    NSLog(@"Load View");
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
     
     // get and store data from database
@@ -44,6 +45,11 @@
 
 }
 
+- (void)reloadData
+{
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -53,13 +59,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    NSLog(@"Number of Sections");
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    NSLog(@"Number of rows");
     return [self.data count];
 }
 
@@ -75,7 +79,10 @@
     return cell;
 }
 
-
+- (IBAction)prepareForUnwind:(UIStoryboardSegue *)sender
+{
+    
+}
 
 
 
