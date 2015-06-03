@@ -33,6 +33,7 @@
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
     
     // get and store data from database
+# warning makes database call everytime, even if nothing to update. Need to cache
     [ref observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         //        NSLog(@"%@", snapshot.value);
         self.data = snapshot.value;
@@ -43,11 +44,6 @@
         NSLog(@"%@", error.description);
     }];
 
-}
-
-- (void)reloadData
-{
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,7 +75,7 @@
     return cell;
 }
 
-- (IBAction)prepareForUnwind:(UIStoryboardSegue *)sender
+- (IBAction)toTableVC:(UIStoryboardSegue *)sender
 {
     
 }

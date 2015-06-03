@@ -8,6 +8,7 @@
 
 #import "GreekGodDetailVC.h"
 #import "FormVC.h"
+#import <Firebase/Firebase.h>
 
 @interface GreekGodDetailVC ()
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
@@ -37,12 +38,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.nameLabel.text = self.name;
     self.romanLabel.text = [self.godData valueForKey:@"roman"];
     self.repText.text = [self formatArrayToString:[self.godData valueForKey:@"rep"]];
     self.symbolsText.text = [self formatArrayToString:[self.godData valueForKey:@"symbol"]];
     
-    
+}
+
+- (void)reloadData
+{
+    self.nameLabel.text = self.name;
+    self.romanLabel.text = [self.godData valueForKey:@"roman"];
+    self.repText.text = [self formatArrayToString:[self.godData valueForKey:@"rep"]];
+    self.symbolsText.text = [self formatArrayToString:[self.godData valueForKey:@"symbol"]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,6 +71,11 @@
             fvc.isEditForm = YES;
         }
     }
+}
+
+- (IBAction)toDetailVC:(UIStoryboardSegue *)sender
+{
+    
 }
 
 

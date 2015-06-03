@@ -31,7 +31,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="Greek God Cell" textLabel="uP2-Kg-vbb" detailTextLabel="og0-3Y-4Ja" style="IBUITableViewCellStyleSubtitle" id="4V8-ih-X6W">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Greek God Cell" textLabel="uP2-Kg-vbb" detailTextLabel="og0-3Y-4Ja" style="IBUITableViewCellStyleSubtitle" id="4V8-ih-X6W">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4V8-ih-X6W" id="8jG-CO-t6h">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -111,7 +111,11 @@
                         <color key="backgroundColor" red="0.69851271151978789" green="0.74450658754605648" blue="0.82444609788359791" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="4kT-GL-WgU">
-                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="M5d-Yb-U31"/>
+                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="M5d-Yb-U31">
+                            <connections>
+                                <action selector="goBackButton:" destination="KPe-RA-bER" id="jxy-2Z-reR"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="bbi-lw-BcU">
                             <connections>
                                 <action selector="submitForm:" destination="KPe-RA-bER" id="DSY-MY-OTK"/>
@@ -125,13 +129,14 @@
                         <outlet property="romanField" destination="OeK-LQ-3Rp" id="xDT-e2-TMe"/>
                         <outlet property="submitButton" destination="bbi-lw-BcU" id="5vd-4I-aFR"/>
                         <outlet property="symbolField" destination="igP-4o-O1L" id="l0L-fJ-Ho0"/>
-                        <segue destination="sa2-ZW-HdE" kind="unwind" identifier="submitForm" unwindAction="prepareForUnwind:" id="1JW-Hu-3xJ"/>
+                        <segue destination="sa2-ZW-HdE" kind="unwind" identifier="toDetailVC" unwindAction="toDetailVC:" id="tN6-wh-0vW"/>
+                        <segue destination="sa2-ZW-HdE" kind="unwind" identifier="toTableVC" unwindAction="toTableVC:" id="o4B-sE-TAn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U03-JM-y7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="sa2-ZW-HdE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3786.5" y="-66.5"/>
+            <point key="canvasLocation" x="3257.5" y="-67.5"/>
         </scene>
         <!--Greek God DetailVC-->
         <scene sceneID="TGh-9H-fDu">
@@ -212,7 +217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vBZ-Bd-89w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3786.5" y="715.5"/>
+            <point key="canvasLocation" x="3257.5" y="724.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZjJ-qO-TEL">

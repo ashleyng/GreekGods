@@ -8,6 +8,7 @@
 
 #import "FormVC.h"
 #import <Firebase/Firebase.h>
+#import "GreekGodDetailVC.h"
 
 @interface FormVC ()
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
@@ -37,21 +38,23 @@
     self.submitButton.title = @"Done";
     self.nameField.text = self.name;
     self.romanField.text = [self.data valueForKey:@"roman"];
-    self.repField.text = [[self.data valueForKey:@"rep"] componentsJoinedByString:@", "];
-    self.symbolField.text = [[self.data valueForKey:@"symbol"] componentsJoinedByString:@", "];
+    self.repField.text = [[self.data valueForKey:@"rep"] componentsJoinedByString:@","];
+    self.symbolField.text = [[self.data valueForKey:@"symbol"] componentsJoinedByString:@","];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)submitForm:(id)sender
 {
     //get values from fields
     NSDictionary *data = @{
                            @"roman" : self.romanField.text,
                            @"symbol" : [self.symbolField.text componentsSeparatedByString:@","],
-                           @"rep" : [self.repField.text componentsSeparatedByString:@","]
+                           @"rep" : [self.repField.text componentsSeparatedByString:@","],
+                           @"image" : @""
                            };
     
     // firebase set up and add new data
@@ -60,18 +63,34 @@
     if (self.isEditForm) {
 # warning May not be able to handle if name changes
         [godRef updateChildValues: data];
+        [self performSegueWithIdentifier:@"toDetailVC" sender:self];
     }
-    else
+    else {
         [godRef setValue: data];
-    [self performSegueWithIdentifier:@"submitForm" sender:self];
+        [self performSegueWithIdentifier:@"toTableVC" sender:self];
+    }
 
     
 }
 
+- (IBAction)goBackButton:(id)sender {
+    if (self.isEditForm) {
+        [self performSegueWithIdentifier:@"toDetailVC" sender:self];
+    }
+    else {
+        [self performSegueWithIdentifier:@"toTableVC" sender:self];
+    }
 
-- (IBAction)prepareForUnwind:(UIStoryboardSegue *)sender
+}
+
+
+- (IBAction)toTableVC:(UIStoryboardSegue *)segue
 {
     
+}
+
+- (IBAction)toDetailVC:(UIStoryboardSegue *)segue
+{
 }
 
 /*
