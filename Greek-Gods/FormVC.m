@@ -50,10 +50,14 @@
 - (IBAction)submitForm:(id)sender
 {
     //get values from fields
+    NSArray *symbols = [self.symbolField.text componentsSeparatedByString:@","];
+    NSArray *reps = [self.repField.text componentsSeparatedByString:@","];
+    symbols = [self formatArray:symbols];
+    reps = [self formatArray:reps];
     NSDictionary *data = @{
                            @"roman" : self.romanField.text,
-                           @"symbol" : [self.symbolField.text componentsSeparatedByString:@","],
-                           @"rep" : [self.repField.text componentsSeparatedByString:@","],
+                           @"symbol" : symbols,
+                           @"rep" : reps,
                            @"image" : @""
                            };
     
@@ -69,8 +73,17 @@
         [godRef setValue: data];
         [self performSegueWithIdentifier:@"toTableVC" sender:self];
     }
+}
 
-    
+- (NSArray *)formatArray: (NSArray *)unformatedArray {
+    NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+    for (id value in unformatedArray) {
+        if ([value isKindOfClass:[NSString class]]) {
+            NSString *formatedString = [(NSString *)value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            [returnArray addObject:formatedString];
+        }
+    }
+    return returnArray;
 }
 
 - (IBAction)goBackButton:(id)sender {

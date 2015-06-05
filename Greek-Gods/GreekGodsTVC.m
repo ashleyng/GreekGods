@@ -34,8 +34,7 @@
     
     // get and store data from database
 # warning makes database call everytime, even if nothing to update. Need to cache
-    [ref observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        //        NSLog(@"%@", snapshot.value);
+    [ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         self.data = snapshot.value;
         self.keys = [self.data allKeys];
         NSLog(@"Data successfully retieved and stored");
@@ -94,7 +93,6 @@
     
     if (indexPath ) {
         if ([segue.identifier isEqualToString:@"Detail View"]) {
-            NSLog(@"%@", [segue.destinationViewController class]);
             if ([segue.destinationViewController isKindOfClass:[GreekGodDetailVC class]]) {
                 GreekGodDetailVC *gvc = segue.destinationViewController;
                 gvc.godData = self.data[self.keys[indexPath.row]];

@@ -39,10 +39,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.nameLabel.text = self.name;
-    self.romanLabel.text = [self.godData valueForKey:@"roman"];
-    self.repText.text = [self formatArrayToString:[self.godData valueForKey:@"rep"]];
-    self.symbolsText.text = [self formatArrayToString:[self.godData valueForKey:@"symbol"]];
+    Firebase *ref = [[Firebase alloc] initWithUrl: @"https://greek-gods.firebaseio.com/"];
+    [ref observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+        NSLog(@"The updated post title is %@", snapshot.value);
+        self.godData = snapshot.value;
+        [self reloadData];
+    }];
+    
+    [self reloadData];
     
 }
 
@@ -50,6 +54,7 @@
 {
     self.nameLabel.text = self.name;
     self.romanLabel.text = [self.godData valueForKey:@"roman"];
+# warning need to fix font size
     self.repText.text = [self formatArrayToString:[self.godData valueForKey:@"rep"]];
     self.symbolsText.text = [self formatArrayToString:[self.godData valueForKey:@"symbol"]];
 }
