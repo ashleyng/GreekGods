@@ -51,6 +51,7 @@
 		D858568C1B1D2A390032DD21 /* Greek-GodsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Greek-GodsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85856911B1D2A390032DD21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D85856921B1D2A390032DD21 /* Greek_GodsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Greek_GodsTests.m; sourceTree = "<group>"; };
+		D8BAE2241B2146F20091DE16 /* NSStrinAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSStrinAdditions.h; sourceTree = "<group>"; };
 		E8A2FD5187C16CFCA044510F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDDE6BF13832C3993408A134 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +138,7 @@
 			children = (
 				D85856771B1D2A390032DD21 /* Info.plist */,
 				D85856781B1D2A390032DD21 /* main.m */,
+				D8BAE2241B2146F20091DE16 /* NSStrinAdditions.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

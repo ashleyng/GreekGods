@@ -9,6 +9,8 @@
 #import "FormVC.h"
 #import <Firebase/Firebase.h>
 #import "GreekGodDetailVC.h"
+#import <Foundation/Foundation.h>
+//#import "NSStrinAdditions.h"
 
 @interface FormVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
@@ -41,6 +43,9 @@
     self.romanField.text = [self.data valueForKey:@"roman"];
     self.repField.text = [[self.data valueForKey:@"rep"] componentsJoinedByString:@","];
     self.symbolField.text = [[self.data valueForKey:@"symbol"] componentsJoinedByString:@","];
+    if (![[self.data valueForKey:@"image"] isEqualToString:@""]) {
+        self.image.image = [self decodeImage:[self.data valueForKey:@"image"]];
+    }
 }
 
 - (IBAction)submitForm:(id)sender
@@ -50,11 +55,12 @@
     NSArray *reps = [self.repField.text componentsSeparatedByString:@","];
     symbols = [self formatArray:symbols];
     reps = [self formatArray:reps];
+//    NSLog(@"%@", [self encodeImage:self.image.image]);
     NSDictionary *data = @{
                            @"roman" : self.romanField.text,
                            @"symbol" : symbols,
                            @"rep" : reps,
-                           @"image" : @""
+                           @"image" : [self encodeImage:self.image.image]
                            };
     
     // firebase set up and add new data
@@ -69,6 +75,24 @@
         [godRef setValue: data];
         [self performSegueWithIdentifier:@"toTableVC" sender:self];
     }
+}
+
+- (NSString *)encodeImage:(UIImage *)image {
+    NSLog(@"IN ENCODED IMAGE");
+    NSData *dataImage = UIImagePNGRepresentation(image);
+    NSLog(@"HERE");
+    NSString *encodedImage = [dataImage base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSLog(@"HERE2");
+    NSLog(@"Encoded: %@", encodedImage);
+    return encodedImage;
+}
+
+- (UIImage *)decodeImage:(NSString *)encodedImage {
+    NSData *decodedData = [[NSData alloc]
+                           initWithBase64EncodedString:encodedImage
+                           options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    UIImage *image = [UIImage imageWithData:decodedData];
+    return image;
 }
 
 - (NSArray *)formatArray: (NSArray *)unformatedArray {

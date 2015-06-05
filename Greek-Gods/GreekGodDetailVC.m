@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *romanLabel;
 @property (strong, nonatomic) IBOutlet UITextView *repText;
 @property (strong, nonatomic) IBOutlet UITextView *symbolsText;
+@property (strong, nonatomic) IBOutlet UIImageView *image;
 
 @end
 
@@ -56,6 +57,9 @@
 # warning need to fix font size
     self.repText.text = [self formatArrayToString:[self.godData valueForKey:@"rep"]];
     self.symbolsText.text = [self formatArrayToString:[self.godData valueForKey:@"symbol"]];
+    if (![[self.godData valueForKey:@"image"] isEqualToString:@""]) {
+        self.image.image = [self decodeImage: [self.godData valueForKey:@"image"]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,6 +79,14 @@
             fvc.isEditForm = YES;
         }
     }
+}
+
+- (UIImage *)decodeImage:(NSString *)encodedImage {
+    NSData *decodedData = [[NSData alloc]
+                           initWithBase64EncodedString:encodedImage
+                           options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    UIImage *image = [UIImage imageWithData:decodedData];
+    return image;
 }
 
 - (IBAction)toDetailVC:(UIStoryboardSegue *)sender

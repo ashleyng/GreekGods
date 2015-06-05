@@ -223,6 +223,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="image" destination="TUE-g8-bgP" id="950-93-tig"/>
                         <outlet property="nameLabel" destination="awV-0K-PND" id="DZT-9P-TlQ"/>
                         <outlet property="repText" destination="Hcu-7p-UWn" id="Wp2-5i-VzR"/>
                         <outlet property="romanLabel" destination="1O3-fd-TJD" id="tVg-nU-Evp"/>
