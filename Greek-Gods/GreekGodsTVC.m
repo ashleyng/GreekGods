@@ -33,7 +33,6 @@
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
     
     // get and store data from database
-# warning makes database call everytime, even if nothing to update. Need to cache
     [ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         self.data = snapshot.value;
         self.keys = [self.data allKeys];

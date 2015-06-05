@@ -10,12 +10,13 @@
 #import <Firebase/Firebase.h>
 #import "GreekGodDetailVC.h"
 
-@interface FormVC ()
+@interface FormVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
 @property (strong, nonatomic) IBOutlet UITextField *romanField;
 @property (strong, nonatomic) IBOutlet UITextView *repField;
 @property (strong, nonatomic) IBOutlet UITextView *symbolField;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *submitButton;
+@property (strong, nonatomic) IBOutlet UIImageView *image;
 
 @end
 
@@ -40,11 +41,6 @@
     self.romanField.text = [self.data valueForKey:@"roman"];
     self.repField.text = [[self.data valueForKey:@"rep"] componentsJoinedByString:@","];
     self.symbolField.text = [[self.data valueForKey:@"symbol"] componentsJoinedByString:@","];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)submitForm:(id)sender
@@ -94,6 +90,32 @@
         [self performSegueWithIdentifier:@"toTableVC" sender:self];
     }
 
+}
+
+# pragma mark Image Uploading
+
+# warning need to support take image
+- (IBAction)addImage:(id)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    self.image.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
 }
 
 

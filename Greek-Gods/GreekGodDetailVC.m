@@ -29,8 +29,6 @@
             [return_string appendFormat:@"%@, ", (NSString *)value];
         }
     }
-    // get rid of last comma and space
-//    [return_string deleteCharactersInRange: NSMakeRange([return_string length] - 3, [return_string length] - 1)];
     return return_string;
     
 }
@@ -40,6 +38,7 @@
     // Do any additional setup after loading the view.
     
     Firebase *ref = [[Firebase alloc] initWithUrl: @"https://greek-gods.firebaseio.com/"];
+# warning possible making multiple observers with every call to viewDidLoad?
     [ref observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
         NSLog(@"The updated post title is %@", snapshot.value);
         self.godData = snapshot.value;
