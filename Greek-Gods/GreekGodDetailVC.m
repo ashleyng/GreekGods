@@ -21,6 +21,10 @@
 
 @implementation GreekGodDetailVC
 
+
+/*
+    format an array into a comma seperated string
+ */
 - (NSString *)formatArrayToString:(NSArray *)array
 {
     NSMutableString *return_string = [[NSMutableString alloc] init];

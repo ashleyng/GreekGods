@@ -87,20 +87,29 @@
     }
 }
 
+#pragma mark encode/decode image
+
+/*
+    encode an image into a base64 string
+ */
 - (NSString *)encodeImage:(UIImage *)image {
-    NSLog(@"IN ENCODED IMAGE");
+    // convert UIImage to NSData
     NSData *dataImage = UIImagePNGRepresentation(image);
-    NSLog(@"HERE");
+    
+    // encode NSDate to base64 NSString
     NSString *encodedImage = [dataImage base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    NSLog(@"HERE2");
-    NSLog(@"Encoded: %@", encodedImage);
     return encodedImage;
 }
 
+/*
+    decode a string to an image
+ */
 - (UIImage *)decodeImage:(NSString *)encodedImage {
+    //convert string to NSDate
     NSData *decodedData = [[NSData alloc]
                            initWithBase64EncodedString:encodedImage
                            options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    // make image with NSdata
     UIImage *image = [UIImage imageWithData:decodedData];
     return image;
 }
@@ -119,22 +128,11 @@
     return returnArray;
 }
 
-/*
- tapped back button. Send you to the correct view depending of editing or submiting 
- a new entry
- */
-- (IBAction)goBackButton:(id)sender {
-    if (self.isEditForm) {
-        [self performSegueWithIdentifier:@"toDetailVC" sender:self];
-    }
-    else {
-        [self performSegueWithIdentifier:@"toTableVC" sender:self];
-    }
-
-}
-
 # pragma mark Image Uploading
 
+/*
+
+ */
 # warning need to support take image
 - (IBAction)addImage:(id)sender {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -160,6 +158,20 @@
 }
 
 #pragma mark Navigation
+
+/*
+ tapped back button. Send you to the correct view depending of editing or submiting
+ a new entry
+ */
+- (IBAction)goBackButton:(id)sender {
+    if (self.isEditForm) {
+        [self performSegueWithIdentifier:@"toDetailVC" sender:self];
+    }
+    else {
+        [self performSegueWithIdentifier:@"toTableVC" sender:self];
+    }
+    
+}
 
 
 - (IBAction)toTableVC:(UIStoryboardSegue *)segue
