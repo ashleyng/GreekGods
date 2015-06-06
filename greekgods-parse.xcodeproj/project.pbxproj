@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8029A291B23954400AE8D11 /* GreekGodTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D8029A281B23954400AE8D11 /* GreekGodTVC.m */; };
 		D805903A1B238C22006DC364 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D80590391B238C22006DC364 /* main.m */; };
 		D805903D1B238C22006DC364 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D805903C1B238C22006DC364 /* AppDelegate.m */; };
 		D80590401B238C22006DC364 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D805903F1B238C22006DC364 /* ViewController.m */; };
@@ -14,6 +15,7 @@
 		D80590451B238C22006DC364 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D80590441B238C22006DC364 /* Images.xcassets */; };
 		D80590481B238C22006DC364 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80590461B238C22006DC364 /* LaunchScreen.xib */; };
 		D80590541B238C23006DC364 /* greekgods_parseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D80590531B238C23006DC364 /* greekgods_parseTests.m */; };
+		ECFF2C4BF082F15E71E719A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF510082EF0B04AC186F66D4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F0355BA344FFC9CF7FFEB7A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C0E589DC96ACC74CA22E0A68 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		CF510082EF0B04AC186F66D4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8029A271B23954400AE8D11 /* GreekGodTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreekGodTVC.h; sourceTree = "<group>"; };
+		D8029A281B23954400AE8D11 /* GreekGodTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreekGodTVC.m; sourceTree = "<group>"; };
 		D80590341B238C22006DC364 /* greekgods-parse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "greekgods-parse.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80590381B238C22006DC364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D80590391B238C22006DC364 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -47,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECFF2C4BF082F15E71E719A9 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +68,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C0F66E9FEAB2FB8E898E10AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF510082EF0B04AC186F66D4 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D805902B1B238C22006DC364 = {
 			isa = PBXGroup;
 			children = (
 				D80590361B238C22006DC364 /* greekgods-parse */,
 				D80590501B238C23006DC364 /* greekgods-parseTests */,
 				D80590351B238C22006DC364 /* Products */,
+				FEF97535E8FAF5B2687285EB /* Pods */,
+				C0F66E9FEAB2FB8E898E10AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +103,8 @@
 				D805903C1B238C22006DC364 /* AppDelegate.m */,
 				D805903E1B238C22006DC364 /* ViewController.h */,
 				D805903F1B238C22006DC364 /* ViewController.m */,
+				D8029A271B23954400AE8D11 /* GreekGodTVC.h */,
+				D8029A281B23954400AE8D11 /* GreekGodTVC.m */,
 				D80590411B238C22006DC364 /* Main.storyboard */,
 				D80590441B238C22006DC364 /* Images.xcassets */,
 				D80590461B238C22006DC364 /* LaunchScreen.xib */,
@@ -119,6 +139,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FEF97535E8FAF5B2687285EB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C0E589DC96ACC74CA22E0A68 /* Pods.debug.xcconfig */,
+				8F0355BA344FFC9CF7FFEB7A /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D80590571B238C23006DC364 /* Build configuration list for PBXNativeTarget "greekgods-parse" */;
 			buildPhases = (
+				D4EC6395ED67C3685D1FE879 /* Check Pods Manifest.lock */,
 				D80590301B238C22006DC364 /* Sources */,
 				D80590311B238C22006DC364 /* Frameworks */,
 				D80590321B238C22006DC364 /* Resources */,
+				190B7D51DBA57BBE49457F9B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,12 +245,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		190B7D51DBA57BBE49457F9B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4EC6395ED67C3685D1FE879 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D80590301B238C22006DC364 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D80590401B238C22006DC364 /* ViewController.m in Sources */,
+				D8029A291B23954400AE8D11 /* GreekGodTVC.m in Sources */,
 				D805903D1B238C22006DC364 /* AppDelegate.m in Sources */,
 				D805903A1B238C22006DC364 /* main.m in Sources */,
 			);
@@ -345,6 +410,7 @@
 		};
 		D80590581B238C23006DC364 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0E589DC96ACC74CA22E0A68 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "greekgods-parse/Info.plist";
@@ -355,6 +421,7 @@
 		};
 		D80590591B238C23006DC364 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F0355BA344FFC9CF7FFEB7A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "greekgods-parse/Info.plist";
@@ -416,6 +483,7 @@
 				D80590591B238C23006DC364 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D805905A1B238C23006DC364 /* Build configuration list for PBXNativeTarget "greekgods-parseTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +492,7 @@
 				D805905C1B238C23006DC364 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
