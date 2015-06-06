@@ -26,16 +26,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     // on edit form
-    if (self.isEditForm) {
+    if (self.isEditForm)
         [self editFormSetup];
-    }
     else
         self.submitButton.title = @"Sumbit";
 }
 
+/*
+ if editting existing entry, fill in form with entry's data.
+ and change 'submit' button to a 'done' button
+ */
 - (void)editFormSetup
 {
     self.submitButton.title = @"Done";
@@ -48,14 +50,19 @@
     }
 }
 
+
+/*
+ done for submitting a new entry and updating an existing entry
+ */
 - (IBAction)submitForm:(id)sender
 {
-    //get values from fields
+    // format symbols and representation fields
     NSArray *symbols = [self.symbolField.text componentsSeparatedByString:@","];
     NSArray *reps = [self.repField.text componentsSeparatedByString:@","];
     symbols = [self formatArray:symbols];
     reps = [self formatArray:reps];
-//    NSLog(@"%@", [self encodeImage:self.image.image]);
+    
+    // put form field data in a dictionary
     NSDictionary *data = @{
                            @"roman" : self.romanField.text,
                            @"symbol" : symbols,
@@ -66,12 +73,15 @@
     // firebase set up and add new data
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
     Firebase *godRef = [ref childByAppendingPath: self.nameField.text];
+    
     if (self.isEditForm) {
+        // if editting, update child and segue back to detail view controller
 # warning May not be able to handle if name changes
         [godRef updateChildValues: data];
         [self performSegueWithIdentifier:@"toDetailVC" sender:self];
     }
     else {
+        // if submit a new entry, setValue of new entry and segue back to table view
         [godRef setValue: data];
         [self performSegueWithIdentifier:@"toTableVC" sender:self];
     }
@@ -94,7 +104,10 @@
     UIImage *image = [UIImage imageWithData:decodedData];
     return image;
 }
-
+/*
+ get's rid of trailing and leading white spaces in an 
+ array entry
+ */
 - (NSArray *)formatArray: (NSArray *)unformatedArray {
     NSMutableArray *returnArray = [[NSMutableArray alloc] init];
     for (id value in unformatedArray) {
@@ -106,6 +119,10 @@
     return returnArray;
 }
 
+/*
+ tapped back button. Send you to the correct view depending of editing or submiting 
+ a new entry
+ */
 - (IBAction)goBackButton:(id)sender {
     if (self.isEditForm) {
         [self performSegueWithIdentifier:@"toDetailVC" sender:self];
@@ -142,6 +159,8 @@
     
 }
 
+#pragma mark Navigation
+
 
 - (IBAction)toTableVC:(UIStoryboardSegue *)segue
 {
@@ -150,16 +169,7 @@
 
 - (IBAction)toDetailVC:(UIStoryboardSegue *)segue
 {
+    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
