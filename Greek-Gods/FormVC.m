@@ -38,7 +38,7 @@
 - (void)editFormSetup
 {
     self.submitButton.title = @"Done";
-    self.nameField.text = self.name;
+    self.nameField.text = [self.data valueForKey:@"name"];
     self.romanField.text = [self.data valueForKey:@"roman"];
     self.repField.text = [[self.data valueForKey:@"rep"] componentsJoinedByString:@","];
     self.symbolField.text = [[self.data valueForKey:@"symbol"] componentsJoinedByString:@","];
@@ -63,6 +63,7 @@
     
     // put form field data in a dictionary
     NSDictionary *data = @{
+                           @"name" : self.nameField.text,
                            @"roman" : self.romanField.text,
                            @"symbol" : symbols,
                            @"rep" : reps,
@@ -71,16 +72,18 @@
     
     // firebase set up and add new data
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
-    Firebase *godRef = [ref childByAppendingPath: self.nameField.text];
+    
     
     if (self.isEditForm) {
         // if editting, update child and segue back to detail view controller
 # warning May not be able to handle if name changes
+        Firebase *godRef = [ref childByAppendingPath:self.key];
         [godRef updateChildValues: data];
         [self performSegueWithIdentifier:@"toDetailVC" sender:self];
     }
     else {
         // if submit a new entry, setValue of new entry and segue back to table view
+        Firebase *godRef = [ref childByAutoId];
         [godRef setValue: data];
         [self performSegueWithIdentifier:@"toTableVC" sender:self];
     }
@@ -91,6 +94,9 @@
  array entry
  */
 - (NSArray *)formatArray: (NSArray *)unformatedArray {
+    if ([unformatedArray count] == 0) {
+        return @[];
+    }
     NSMutableArray *returnArray = [[NSMutableArray alloc] init];
     for (id value in unformatedArray) {
         if ([value isKindOfClass:[NSString class]]) {

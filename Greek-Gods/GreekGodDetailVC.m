@@ -39,7 +39,6 @@
     
     Firebase *ref = [[Firebase alloc] initWithUrl: @"https://greek-gods.firebaseio.com/"];
     [ref observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
-        NSLog(@"The updated post title is %@", snapshot.value);
         self.godData = snapshot.value;
         [self reloadData];
     }];
@@ -70,7 +69,7 @@
         if ([segue.destinationViewController isKindOfClass:[FormVC class]]) {
             FormVC *fvc = segue.destinationViewController;
             fvc.data = self.godData;
-            fvc.name = self.name;
+            fvc.key = self.key;
             fvc.isEditForm = YES;
         }
     }

@@ -1,44 +1,58 @@
 {
-  "Apollo" : {
+  "-Jr8xsgmHnv7L-n9zqUz" : {
     "image" : "",
-    "rep" : ["music", "truth and prophecy", "healing", "sun and light", "plague", "poetry"],
+    "name" : "Apollo",
+    "rep" : [ "music", "truth and prophecy", "healing", "sun and light", "plague", "poetry" ],
     "roman" : "Apollo",
-    "symbol" : ["lyre", "laurel wreath", "python", "raven", "bow and arrows"]
+    "symbol" : [ "lyre", "laurel wreath", "python", "raven", "bow and arrows" ]
   },
-  "Artemis" : {
+  "-Jr8xtzImDajHn7NPdvR" : {
     "image" : "",
-    "rep" : ["the hunt", "wild animals", "wilderness", "childbirth", "virginity", "protector of young girls", "bringing and relieving disease in women"],
-    "roman" : "Diana",
-    "symbol" : ["bow", "arrows", "stag", "hunting dog", "moon"]
-  },
-  "Athena" : {
-    "image" : "",
-    "rep" : ["wisdom", "courage", "inspiration", "civilization", "law and justice", "mathematics", "strength", "war strategy", "the arts", "crafts", "skill"],
+    "name" : "Athena",
+    "rep" : [ "wisdom", "courage", "inspiration", "civilization", "law and justice", "mathematics", "strength", "war strategy", "the arts", "crafts", "skill" ],
     "roman" : "Minerva",
     "symbol" : [ "owls", "olive tree", "snakes", "Aegis", "armor", "helmet", "spears", "gorgoneion" ]
   },
-  "Hades" : {
+  "-Jr9-1rHtvHH1Rm1oFU8" : {
     "image" : "",
-    "rep" : ["underworld"],
-    "roman" : "Dis Pater",
-    "symbol" : ["cerberus", "drinking horn", "scepter", "cypress", "narcissus", "key"]
+    "name" : "Artemis",
+    "rep" : [ "the hunt", "wild animals", "wilderness", "childbirth", "virginity", "protector of young girls", "bringing and relieving disease in women" ],
+    "roman" : "Diana",
+    "symbol" : [ "bow", "arrows", "stag", "hunting dog", "moon" ]
   },
-  "Hera" : {
+  "-Jr9-KHZKhRegM-tt5xx" : {
     "image" : "",
-    "rep" : ["women", "marriage"],
+    "name" : "Demeter",
+    "rep" : [ "harvest", "grain", "fertility" ],
+    "roman" : "Ceres",
+    "symbol" : [ "cornucopia", "wheat", "torch", "bread" ]
+  },
+  "-Jr9-Z9cb7z3eswywn4O" : {
+    "image" : "",
+    "name" : "Zeus",
+    "rep" : [ "Sky", "Thunder" ],
+    "roman" : "Jupiter",
+    "symbol" : [ "thunderbolt", "eagle", "bull", "oak" ]
+  },
+  "-Jr9-k13BfQSMMHH01Cw" : {
+    "image" : "",
+    "name" : "Hades",
+    "rep" : [ "underworld" ],
+    "roman" : "Dis Pater",
+    "symbol" : [ "cerberus", "drinking horn", "scepter", "cypress", "narcissus", "key" ]
+  },
+  "-Jr9-lP7R4v-Lrr35ns-" : {
+    "image" : "",
+    "name" : "Hera",
+    "rep" : [ "women", "marriage" ],
     "roman" : "Juno",
     "symbol" : [ "pomegranate", "peacock", "feather", "diadem", "cow", "lily", "lotus", "cuckoo", "panther", "scepter", "throne", "lion" ]
   },
-  "Poseidon" : {
+  "-Jr9-nBGzUarrhy9_hdp" : {
     "image" : "",
-    "rep" : ["Sea"],
+    "name" : "Poseidon",
+    "rep" : [ "Sea" ],
     "roman" : "Neptune",
     "symbol" : [ "trident", "fish", "dolphin", "horse", "bull" ]
-  },
-  "Zeus" : {
-    "image" : "",
-    "rep" : ["Sky", "Thunder"],
-    "roman" : "Jupiter",
-    "symbol" : [ "thunderbolt", "eagle", "bull", "oak" ]
   }
 }

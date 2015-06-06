@@ -24,6 +24,10 @@
     
     self.title = @"Greek Gods";
     
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated {
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
     
     // get and store data from database.
@@ -59,7 +63,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Greek God Cell" forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = self.keys[indexPath.row];
+    NSString *key = self.keys[indexPath.row];
+    cell.textLabel.text = [[self.data valueForKey:key] valueForKey:@"name"];
     cell.detailTextLabel.text = @"";
     
     
@@ -84,8 +89,10 @@
         if ([segue.identifier isEqualToString:@"Detail View"]) {
             if ([segue.destinationViewController isKindOfClass:[GreekGodDetailVC class]]) {
                 GreekGodDetailVC *gvc = segue.destinationViewController;
-                gvc.godData = self.data[self.keys[indexPath.row]];
-                gvc.name = self.keys[indexPath.row];
+                NSString *key = self.keys[indexPath.row];
+                gvc.godData = [self.data valueForKey: key];
+                gvc.name = [gvc.godData valueForKey:@"name"];
+                gvc.key = key;
             }
         }
     }
