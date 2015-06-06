@@ -29,8 +29,6 @@
             [return_string appendFormat:@"%@, ", (NSString *)value];
         }
     }
-    // get rid of last comma and space
-//    [return_string deleteCharactersInRange: NSMakeRange([return_string length] - 3, [return_string length] - 1)];
     return return_string;
     
 }
@@ -64,9 +62,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark Navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     
     if ([segue.identifier isEqualToString:@"Edit Data"]) {
         if ([segue.destinationViewController isKindOfClass:[FormVC class]]) {

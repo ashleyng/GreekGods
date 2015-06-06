@@ -22,18 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.title = @"Greek Gods";
-    NSLog(@"Load View");
+    
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
     
-    // get and store data from database
-# warning makes database call everytime, even if nothing to update. Need to cache
+    // get and store data from database.
     [ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         self.data = snapshot.value;
         self.keys = [self.data allKeys];
@@ -42,7 +35,6 @@
     } withCancelBlock:^(NSError *error) {
         NSLog(@"%@", error.description);
     }];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,24 +66,21 @@
     return cell;
 }
 
+
+#pragma mark - Navigation
+
 - (IBAction)toTableVC:(UIStoryboardSegue *)sender
 {
     
 }
 
-
-
-#pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     
     // get index of selected row
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     
-    if (indexPath ) {
+    if (indexPath) {
         if ([segue.identifier isEqualToString:@"Detail View"]) {
             if ([segue.destinationViewController isKindOfClass:[GreekGodDetailVC class]]) {
                 GreekGodDetailVC *gvc = segue.destinationViewController;
