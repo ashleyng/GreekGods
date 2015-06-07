@@ -13,13 +13,18 @@
 @interface GreekGodDetailVC ()
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *romanLabel;
-@property (strong, nonatomic) IBOutlet UITextView *repText;
-@property (strong, nonatomic) IBOutlet UITextView *symbolsText;
+@property (strong, nonatomic) IBOutlet UIImageView *image;
+@property (strong, nonatomic) IBOutlet UILabel *repText;
+@property (strong, nonatomic) IBOutlet UILabel *symbolsText;
 
 @end
 
 @implementation GreekGodDetailVC
 
+
+/*
+    format an array into a comma seperated string
+ */
 - (NSString *)formatArrayToString:(NSArray *)array
 {
     NSMutableString *return_string = [[NSMutableString alloc] init];
@@ -38,6 +43,7 @@
     // Do any additional setup after loading the view.
     
     Firebase *ref = [[Firebase alloc] initWithUrl: @"https://greek-gods.firebaseio.com/"];
+# warning possible making multiple observers with every call to viewDidLoad?
     [ref observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
         self.godData = snapshot.value;
         [self reloadData];
@@ -47,13 +53,16 @@
     
 }
 
+# warning need to fix  vertical spacing within representation and symbols label
 - (void)reloadData
 {
     self.nameLabel.text = self.name;
     self.romanLabel.text = [self.godData valueForKey:@"roman"];
-# warning need to fix font size
     self.repText.text = [self formatArrayToString:[self.godData valueForKey:@"rep"]];
     self.symbolsText.text = [self formatArrayToString:[self.godData valueForKey:@"symbol"]];
+    if (![[self.godData valueForKey:@"image"] isEqualToString:@""]) {
+        self.image.image = [self decodeImage: [self.godData valueForKey:@"image"]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,6 +82,14 @@
             fvc.isEditForm = YES;
         }
     }
+}
+
+- (UIImage *)decodeImage:(NSString *)encodedImage {
+    NSData *decodedData = [[NSData alloc]
+                           initWithBase64EncodedString:encodedImage
+                           options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    UIImage *image = [UIImage imageWithData:decodedData];
+    return image;
 }
 
 - (IBAction)toDetailVC:(UIStoryboardSegue *)sender

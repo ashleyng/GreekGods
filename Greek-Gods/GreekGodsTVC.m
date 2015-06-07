@@ -29,8 +29,8 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
-    
-    // get and store data from database.
+
+    // get and store data from database
     [ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         self.data = snapshot.value;
         self.keys = [self.data allKeys];
