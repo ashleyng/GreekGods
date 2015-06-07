@@ -15,6 +15,8 @@
 		D80590451B238C22006DC364 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D80590441B238C22006DC364 /* Images.xcassets */; };
 		D80590481B238C22006DC364 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80590461B238C22006DC364 /* LaunchScreen.xib */; };
 		D80590541B238C23006DC364 /* greekgods_parseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D80590531B238C23006DC364 /* greekgods_parseTests.m */; };
+		D8E5FD081B23B67D00AD4140 /* FormVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E5FD071B23B67D00AD4140 /* FormVC.m */; };
+		D8E5FD0B1B23BBC600AD4140 /* DetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E5FD0A1B23BBC600AD4140 /* DetailVC.m */; };
 		ECFF2C4BF082F15E71E719A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF510082EF0B04AC186F66D4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,10 @@
 		D805904D1B238C23006DC364 /* greekgods-parseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "greekgods-parseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80590521B238C23006DC364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D80590531B238C23006DC364 /* greekgods_parseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = greekgods_parseTests.m; sourceTree = "<group>"; };
+		D8E5FD061B23B67D00AD4140 /* FormVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormVC.h; sourceTree = "<group>"; };
+		D8E5FD071B23B67D00AD4140 /* FormVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormVC.m; sourceTree = "<group>"; };
+		D8E5FD091B23BBC600AD4140 /* DetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVC.h; sourceTree = "<group>"; };
+		D8E5FD0A1B23BBC600AD4140 /* DetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,10 @@
 				D805903F1B238C22006DC364 /* ViewController.m */,
 				D8029A271B23954400AE8D11 /* GreekGodTVC.h */,
 				D8029A281B23954400AE8D11 /* GreekGodTVC.m */,
+				D8E5FD061B23B67D00AD4140 /* FormVC.h */,
+				D8E5FD071B23B67D00AD4140 /* FormVC.m */,
+				D8E5FD091B23BBC600AD4140 /* DetailVC.h */,
+				D8E5FD0A1B23BBC600AD4140 /* DetailVC.m */,
 				D80590411B238C22006DC364 /* Main.storyboard */,
 				D80590441B238C22006DC364 /* Images.xcassets */,
 				D80590461B238C22006DC364 /* LaunchScreen.xib */,
@@ -286,6 +296,8 @@
 				D80590401B238C22006DC364 /* ViewController.m in Sources */,
 				D8029A291B23954400AE8D11 /* GreekGodTVC.m in Sources */,
 				D805903D1B238C22006DC364 /* AppDelegate.m in Sources */,
+				D8E5FD0B1B23BBC600AD4140 /* DetailVC.m in Sources */,
+				D8E5FD081B23B67D00AD4140 /* FormVC.m in Sources */,
 				D805903A1B238C22006DC364 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
