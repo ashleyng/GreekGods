@@ -61,49 +61,34 @@
 {
     if (self.isEditForm) {
         // if editting, update child and segue back to detail view controller
-        [self submitEditForm];
+        [self submitFormWithPFObject:self.parseObject];
         [self performSegueWithIdentifier:@"toDetailVC" sender:self];
     }
     else {
         // if submit a new entry, setValue of new entry and segue back to table view
-        [self submitNewEntryForm];
+        PFObject *newObject = [PFObject objectWithClassName:@"GreekGod"];
+        [self submitFormWithPFObject:newObject];
         [self performSegueWithIdentifier:@"toTableVC" sender:self];
     }
 }
 
 /*
-    done editing form, completes the saving
+    fill out appropriate fileds in PFObject and save it in database
  */
-- (void)submitEditForm {
-    self.parseObject[@"name"] = self.nameField.text;
-    self.parseObject[@"roman"] = self.romanField.text;
-    self.parseObject[@"reps"] = [self formatArray:[self.symbolsText.text componentsSeparatedByString:@","]];;
-    self.parseObject[@"symbols"] = [self formatArray:[self.repText.text componentsSeparatedByString:@","]];
-    NSData *imageData = UIImagePNGRepresentation(self.image.image);
-    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@-image.png", self.nameField.text] data:imageData];
-    self.parseObject[@"imageFile"] = imageFile;
-    [self.parseObject save];
-    NSLog(@"object updated in database");
-}
-
-/*
-    done added new entry. completes the saving
- */
-- (void)submitNewEntryForm {
-    PFObject *newObject = [PFObject objectWithClassName:@"GreekGod"];
-    newObject[@"name"] = self.nameField.text;
-    newObject[@"roman"] = self.romanField.text;
-    newObject[@"reps"] = [self formatArray:[self.symbolsText.text componentsSeparatedByString:@","]];
-    newObject[@"symbol"] = [self formatArray:[self.repText.text componentsSeparatedByString:@","]];
+- (void)submitFormWithPFObject: (PFObject *)parseObject
+{
+    parseObject[@"name"] = self.nameField.text;
+    parseObject[@"roman"] = self.romanField.text;
+    parseObject[@"reps"] = [self formatArray:[self.symbolsText.text componentsSeparatedByString:@","]];;
+    parseObject[@"symbols"] = [self formatArray:[self.repText.text componentsSeparatedByString:@","]];
     if (self.image.image) {
         NSData *imageData = UIImagePNGRepresentation(self.image.image);
         PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@-image.png", self.nameField.text] data:imageData];
-        newObject[@"imageFile"] = imageFile;
+        parseObject[@"imageFile"] = imageFile;
     }
-    [newObject save];
-    NSLog(@"new object saved to database");
-    
-    
+    [parseObject save];
+    NSLog(@"object updated in database");
+
 }
 
 - (void)didReceiveMemoryWarning {

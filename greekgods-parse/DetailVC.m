@@ -58,7 +58,10 @@
     }];
 }
 
-# warning need to fix  vertical spacing within representation and symbols label
+/*
+    add the data to the appropriate fields
+ */
+# warning need to fix vertical spacing within representation and symbols label
 - (void)reloadData
 {
     self.nameLabel.text = self.name;
