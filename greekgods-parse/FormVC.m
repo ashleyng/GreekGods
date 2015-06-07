@@ -17,7 +17,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *submitButton;
 @property (strong, nonatomic) IBOutlet UIImageView *image;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *backButton;
-@property (strong, nonatomic) PFObject *parseObject;
+@property (strong, nonatomic) PFObject *parseObject; // only for edit form
 
 @end
 
@@ -78,7 +78,9 @@
     self.parseObject[@"roman"] = self.romanField.text;
     self.parseObject[@"reps"] = [self formatArray:[self.symbolsText.text componentsSeparatedByString:@","]];;
     self.parseObject[@"symbols"] = [self formatArray:[self.repText.text componentsSeparatedByString:@","]];
-//  retreivedObject[@"image"] = [self encodeImage:self.image.image];
+    NSData *imageData = UIImagePNGRepresentation(self.image.image);
+    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@-image.png", self.nameField.text] data:imageData];
+    self.parseObject[@"imageFile"] = imageFile;
     [self.parseObject save];
 }
 
@@ -91,6 +93,9 @@
     newObject[@"roman"] = self.romanField.text;
     newObject[@"reps"] = [self formatArray:[self.symbolsText.text componentsSeparatedByString:@","]];
     newObject[@"symbol"] = [self formatArray:[self.repText.text componentsSeparatedByString:@","]];
+    NSData *imageData = UIImagePNGRepresentation(self.image.image);
+    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@-image.png", self.nameField.text] data:imageData];
+    newObject[@"imageFile"] = imageFile;
     [newObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             NSLog(@"Object successfully saved!");
@@ -100,34 +105,6 @@
     }];
     
     
-}
-
-
-#pragma mark encode/decode image
-
-/*
- encode an image into a base64 string
- */
-- (NSString *)encodeImage:(UIImage *)image {
-    // convert UIImage to NSData
-    NSData *dataImage = UIImagePNGRepresentation(image);
-    
-    // encode NSDate to base64 NSString
-    NSString *encodedImage = [dataImage base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    return encodedImage;
-}
-
-/*
- decode a string to an image
- */
-- (UIImage *)decodeImage:(NSString *)encodedImage {
-    //convert string to NSDate
-    NSData *decodedData = [[NSData alloc]
-                           initWithBase64EncodedString:encodedImage
-                           options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    // make image with NSdata
-    UIImage *image = [UIImage imageWithData:decodedData];
-    return image;
 }
 
 - (void)didReceiveMemoryWarning {

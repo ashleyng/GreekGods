@@ -18,10 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-# warning fill this out with your own IDs and keys
-    [Parse setApplicationId:@""
-                  clientKey:@""];
-    
+    [Parse setApplicationId:@"gbrGMVOshwlCkluEX7sx6B6JLZsvAkK0ecHCF2q5"
+                  clientKey:@"mrvA8yPbo0XudCUp4luDVWUxW3ECYTfQcYyZr5mz"];
     return YES;
 }
 

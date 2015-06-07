@@ -65,10 +65,13 @@
     self.romanLabel.text = self.data[@"roman"];
     self.repText.text = [self formatArrayToString:self.data[@"reps"]];
     self.symbolsText.text = [self formatArrayToString:self.data[@"symbol"]];
-//    if (![[self.godData valueForKey:@"image"] isEqualToString:@""]) {
-//        self.image.image = [self decodeImage: [self.godData valueForKey:@"image"]];
-//    }
-    
+    if (self.data[@"image"]) {
+        PFFile *image = self.data[@"image"];
+        NSData *imageData = [image getData];
+# warning image not showing up, but it is in the database
+        self.image.image = [UIImage imageWithData:imageData];
+    }
+    NSLog(@"Done updating data");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,14 +92,6 @@
             fvc.isEditForm = YES;
         }
     }
-}
-
-- (UIImage *)decodeImage:(NSString *)encodedImage {
-    NSData *decodedData = [[NSData alloc]
-                           initWithBase64EncodedString:encodedImage
-                           options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    UIImage *image = [UIImage imageWithData:decodedData];
-    return image;
 }
 
 - (IBAction)toDetailVC:(UIStoryboardSegue *)sender
