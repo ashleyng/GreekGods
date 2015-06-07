@@ -9,6 +9,7 @@
 #import "GreekGodsTVC.h"
 #import <Firebase/Firebase.h>
 #import "GreekGodDetailVC.h"
+#import "constants.h"
 
 @interface GreekGodsTVC ()
 
@@ -28,7 +29,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
+    Firebase *ref = [[Firebase alloc] initWithUrl:FIREBASE_URL];
 
     // get and store data from database
     [ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
@@ -65,8 +66,6 @@
     // Configure the cell...
     NSString *key = self.keys[indexPath.row];
     cell.textLabel.text = [[self.data valueForKey:key] valueForKey:@"name"];
-    cell.detailTextLabel.text = @"";
-    
     
     return cell;
 }
@@ -90,13 +89,14 @@
             if ([segue.destinationViewController isKindOfClass:[GreekGodDetailVC class]]) {
                 GreekGodDetailVC *gvc = segue.destinationViewController;
                 NSString *key = self.keys[indexPath.row];
-                gvc.godData = [self.data valueForKey: key];
-                gvc.name = [gvc.godData valueForKey:@"name"];
+                gvc.data = [self.data valueForKey: key];
+                gvc.title = [gvc.data valueForKey:@"name"];
                 gvc.key = key;
             }
         }
     }
 }
+
 
 
 @end

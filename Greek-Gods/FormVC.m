@@ -52,11 +52,11 @@
 
 
 /*
- done for submitting a new entry and updating an existing entry
+ when submit/done button is tapped
  */
 - (IBAction)submitForm:(id)sender
 {
-    // format symbols and representation fields
+    // format symbols and representation fields into arrays
     NSArray *symbols = [self.symbolField.text componentsSeparatedByString:@","];
     NSArray *reps = [self.repField.text componentsSeparatedByString:@","];
     symbols = [self formatArray:symbols];
@@ -71,7 +71,7 @@
                            @"image" : [self encodeImage:self.image.image]
                            };
     
-    // firebase set up and add new data
+    // firebase set up
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
     
     
@@ -135,9 +135,6 @@
 
 # pragma mark Image Uploading
 
-/*
-
- */
 # warning need to support take image
 - (IBAction)addImage:(id)sender {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];

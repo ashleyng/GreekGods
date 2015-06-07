@@ -10,8 +10,7 @@
 
 @interface GreekGodDetailVC : UIViewController
 
-@property (nonatomic, strong) NSDictionary *godData;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic) NSString *key;
+@property (nonatomic, strong) NSDictionary *data;
+@property (nonatomic) NSString *key; // used for editing data
 
 @end
