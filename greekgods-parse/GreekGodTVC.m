@@ -20,7 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"Greek Gods";
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     PFQuery *query = [PFQuery queryWithClassName:@"GreekGod"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -69,12 +72,9 @@
         if ([segue.identifier isEqualToString:@"Detail View"]) {
             if ([segue.destinationViewController isKindOfClass:[DetailVC class]]) {
                 DetailVC *gvc = segue.destinationViewController;
-//                NSString *key = [self.data valueForKey:@"objectId"];
-//                gvc.godData = self.data[indexPath.row];
                 gvc.name = [self.data[indexPath.row] valueForKey:@"name"];
-//                NSLog(@"%@", gvc.godData);
-                PFObject *object = self.data[indexPath.row];
-                gvc.key = [object objectId];
+                gvc.key = [self.data[indexPath.row] objectId];
+                gvc.title = gvc.name;
             }
         }
     }

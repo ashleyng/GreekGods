@@ -49,6 +49,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     PFQuery *query = [PFQuery queryWithClassName:@"GreekGod"];
     assert(self.key); // make sure key is not null
+    
+    // in didAppear b/c view is already loaded if coming back from edit form
     [query getObjectInBackgroundWithId:self.key block:^(PFObject *retreivedObject, NSError *error) {
         self.data = retreivedObject;
         NSLog(@"Object retreived");
@@ -79,12 +81,9 @@
 #pragma mark Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    NSLog(@"SEGUE TO EDIT");
     if ([segue.identifier isEqualToString:@"Edit Data"]) {
         if ([segue.destinationViewController isKindOfClass:[FormVC class]]) {
-//            NSLog(@"SET UP FORM DATA");
             FormVC *fvc = segue.destinationViewController;
-//            fvc.data = self.data;
             fvc.key = self.key;
             fvc.isEditForm = YES;
         }

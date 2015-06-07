@@ -10,7 +10,6 @@
 
 @interface DetailVC : UIViewController
 
-//@property (nonatomic, strong) NSDictionary *godData;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic) NSString *key;
 

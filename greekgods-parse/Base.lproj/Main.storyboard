@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="God Cell" textLabel="82A-vp-mZu" style="IBUITableViewCellStyleDefault" id="GoW-wt-lt9">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="God Cell" textLabel="82A-vp-mZu" style="IBUITableViewCellStyleDefault" id="GoW-wt-lt9">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GoW-wt-lt9" id="Ia4-im-lYH">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -251,6 +251,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kYb-Nt-2gh"/>
+        <segue reference="ICc-79-JTt"/>
     </inferredMetricsTieBreakers>
 </document>

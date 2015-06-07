@@ -25,7 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     // on edit form
     if (self.isEditForm) {
@@ -51,7 +50,6 @@
     if (self.parseObject[@"imageFile"]) {
         PFFile *image = self.parseObject[@"imageFile"];
         NSData *imageData = [image getData];
-# warning image not showing up, but it is in the database
         self.image.image = [UIImage imageWithData:imageData];
     }
 }
@@ -85,6 +83,7 @@
     PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@-image.png", self.nameField.text] data:imageData];
     self.parseObject[@"imageFile"] = imageFile;
     [self.parseObject save];
+    NSLog(@"object updated in database");
 }
 
 /*
@@ -96,16 +95,13 @@
     newObject[@"roman"] = self.romanField.text;
     newObject[@"reps"] = [self formatArray:[self.symbolsText.text componentsSeparatedByString:@","]];
     newObject[@"symbol"] = [self formatArray:[self.repText.text componentsSeparatedByString:@","]];
-    NSData *imageData = UIImagePNGRepresentation(self.image.image);
-    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@-image.png", self.nameField.text] data:imageData];
-    newObject[@"imageFile"] = imageFile;
-    [newObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            NSLog(@"Object successfully saved!");
-        } else {
-            NSLog(@"%@", error);
-        }
-    }];
+    if (self.image.image) {
+        NSData *imageData = UIImagePNGRepresentation(self.image.image);
+        PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@-image.png", self.nameField.text] data:imageData];
+        newObject[@"imageFile"] = imageFile;
+    }
+    [newObject save];
+    NSLog(@"new object saved to database");
     
     
 }
