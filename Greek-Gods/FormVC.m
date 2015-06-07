@@ -77,7 +77,6 @@
     
     if (self.isEditForm) {
         // if editting, update child and segue back to detail view controller
-# warning May not be able to handle if name changes
         Firebase *godRef = [ref childByAppendingPath:self.key];
         [godRef updateChildValues: data];
         [self performSegueWithIdentifier:@"toDetailVC" sender:self];

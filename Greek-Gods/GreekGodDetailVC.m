@@ -13,9 +13,9 @@
 @interface GreekGodDetailVC ()
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *romanLabel;
-@property (strong, nonatomic) IBOutlet UITextView *repText;
-@property (strong, nonatomic) IBOutlet UITextView *symbolsText;
 @property (strong, nonatomic) IBOutlet UIImageView *image;
+@property (strong, nonatomic) IBOutlet UILabel *repText;
+@property (strong, nonatomic) IBOutlet UILabel *symbolsText;
 
 @end
 
@@ -53,11 +53,11 @@
     
 }
 
+# warning need to fix  vertical spacing within representation and symbols label
 - (void)reloadData
 {
     self.nameLabel.text = self.name;
     self.romanLabel.text = [self.godData valueForKey:@"roman"];
-# warning need to fix font size
     self.repText.text = [self formatArrayToString:[self.godData valueForKey:@"rep"]];
     self.symbolsText.text = [self formatArrayToString:[self.godData valueForKey:@"symbol"]];
     if (![[self.godData valueForKey:@"image"] isEqualToString:@""]) {
