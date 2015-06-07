@@ -51,8 +51,6 @@
     assert(self.key); // make sure key is not null
     [query getObjectInBackgroundWithId:self.key block:^(PFObject *retreivedObject, NSError *error) {
         self.data = retreivedObject;
-        NSLog(@"KEY: %@", self.key);
-        NSLog(@"%@", self.data);
         NSLog(@"Object retreived");
         [self reloadData];
     }];
@@ -65,10 +63,9 @@
     self.romanLabel.text = self.data[@"roman"];
     self.repText.text = [self formatArrayToString:self.data[@"reps"]];
     self.symbolsText.text = [self formatArrayToString:self.data[@"symbol"]];
-    if (self.data[@"image"]) {
-        PFFile *image = self.data[@"image"];
+    if (self.data[@"imageFile"]) {
+        PFFile *image = self.data[@"imageFile"];
         NSData *imageData = [image getData];
-# warning image not showing up, but it is in the database
         self.image.image = [UIImage imageWithData:imageData];
     }
     NSLog(@"Done updating data");

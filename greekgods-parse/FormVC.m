@@ -48,9 +48,12 @@
     self.romanField.text = [self.parseObject objectForKey:@"roman"];
     self.repText.text = [[self.parseObject objectForKey:@"reps"] componentsJoinedByString:@","];
     self.symbolsText.text = [[self.parseObject objectForKey:@"symbol"] componentsJoinedByString:@","];
-//    if (![[self.data valueForKey:@"image"] isEqualToString:@""]) {
-//        self.image.image = [self decodeImage:[self.data valueForKey:@"image"]];
-//    }
+    if (self.parseObject[@"imageFile"]) {
+        PFFile *image = self.parseObject[@"imageFile"];
+        NSData *imageData = [image getData];
+# warning image not showing up, but it is in the database
+        self.image.image = [UIImage imageWithData:imageData];
+    }
 }
 
 /*
