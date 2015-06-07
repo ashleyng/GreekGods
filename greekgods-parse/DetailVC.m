@@ -50,11 +50,16 @@
     PFQuery *query = [PFQuery queryWithClassName:@"GreekGod"];
     assert(self.key); // make sure key is not null
     
-    // in didAppear b/c view is already loaded if coming back from edit form
+    // in didAppear b/c view is already loaded if coming back from edit form, need to refresh with updated data
     [query getObjectInBackgroundWithId:self.key block:^(PFObject *retreivedObject, NSError *error) {
-        self.data = retreivedObject;
-        NSLog(@"Object retreived");
-        [self reloadData];
+        if (!error) {
+            self.data = retreivedObject;
+            NSLog(@"Object retreived");
+            [self reloadData];
+        }
+        else {
+            NSLog(@"%@", error);
+        }
     }];
 }
 

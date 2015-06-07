@@ -47,8 +47,8 @@
     self.romanField.text = [self.parseObject objectForKey:@"roman"];
     self.repText.text = [[self.parseObject objectForKey:@"reps"] componentsJoinedByString:@","];
     self.symbolsText.text = [[self.parseObject objectForKey:@"symbol"] componentsJoinedByString:@","];
-    if (self.parseObject[@"imageFile"]) {
-        PFFile *image = self.parseObject[@"imageFile"];
+    if ([self.parseObject objectForKey:@"imageFile"]) {
+        PFFile *image = [self.parseObject objectForKey:@"imageFile"];
         NSData *imageData = [image getData];
         self.image.image = [UIImage imageWithData:imageData];
     }

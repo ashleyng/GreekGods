@@ -11,6 +11,6 @@
 @interface DetailVC : UIViewController
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic) NSString *key;
+@property (nonatomic) NSString *key; // only used for edit form
 
 @end
