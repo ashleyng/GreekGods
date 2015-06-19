@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Greek-Gods.xcodeproj">
+      location = "self:greekgods-parse.xcodeproj">
    </FileRef>
 </Workspace>

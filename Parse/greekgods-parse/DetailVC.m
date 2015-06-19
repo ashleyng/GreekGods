@@ -1,30 +1,32 @@
 //
-//  GreekGodDetailVC.m
-//  Greek-Gods
+//  DetailVC.m
+//  greekgods-parse
 //
-//  Created by Ashley Ng on 6/1/15.
+//  Created by Ashley Ng on 6/6/15.
 //  Copyright (c) 2015 Ashley Ng. All rights reserved.
 //
 
-#import "GreekGodDetailVC.h"
+#import "DetailVC.h"
 #import "FormVC.h"
-#import <Firebase/Firebase.h>
-#import "constants.h"
+#import "Parse/Parse.h"
 
-@interface GreekGodDetailVC ()
+@interface DetailVC ()
+
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *romanLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *image;
 @property (strong, nonatomic) IBOutlet UILabel *repText;
 @property (strong, nonatomic) IBOutlet UILabel *symbolsText;
+@property (strong, nonatomic) PFObject *data;
 
 @end
 
-@implementation GreekGodDetailVC
+@implementation DetailVC
+
 
 
 /*
-    format an array into a comma seperated string
+ format an array into a comma seperated string
  */
 - (NSString *)formatArrayToString:(NSArray *)array
 {
@@ -42,28 +44,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    Firebase *ref = [[Firebase alloc] initWithUrl: FIREBASE_URL];
-# warning possible making multiple observers with every call to viewDidLoad?
-    [ref observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
-        self.data = snapshot.value;
-        [self reloadData];
-    }];
-    
-    [self reloadData];
-    
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    PFQuery *query = [PFQuery queryWithClassName:@"GreekGod"];
+    assert(self.key); // make sure key is not null
+    
+    // in didAppear b/c view is already loaded if coming back from edit form, need to refresh with updated data
+    [query getObjectInBackgroundWithId:self.key block:^(PFObject *retreivedObject, NSError *error) {
+        if (!error) {
+            self.data = retreivedObject;
+            NSLog(@"Object retreived");
+            [self reloadData];
+        }
+        else {
+            NSLog(@"%@", error);
+        }
+    }];
+}
+
+/*
+    add the data to the appropriate fields
+ */
 # warning need to fix vertical spacing within representation and symbols label
 - (void)reloadData
 {
-    self.nameLabel.text = [self.data valueForKey:@"name"];
-    self.romanLabel.text = [self.data valueForKey:@"roman"];
-    self.repText.text = [self formatArrayToString:[self.data valueForKey:@"rep"]];
-    self.symbolsText.text = [self formatArrayToString:[self.data valueForKey:@"symbol"]];
-    if (![[self.data valueForKey:@"image"] isEqualToString:@""]) {
-        self.image.image = [self decodeImage: [self.data valueForKey:@"image"]];
+    self.nameLabel.text = self.name;
+    self.romanLabel.text = self.data[@"roman"];
+    self.repText.text = [self formatArrayToString:self.data[@"reps"]];
+    self.symbolsText.text = [self formatArrayToString:self.data[@"symbol"]];
+    if (self.data[@"imageFile"]) {
+        PFFile *image = self.data[@"imageFile"];
+        NSData *imageData = [image getData];
+        self.image.image = [UIImage imageWithData:imageData];
     }
+    NSLog(@"Done updating data");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,30 +89,19 @@
 #pragma mark Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
     if ([segue.identifier isEqualToString:@"Edit Data"]) {
         if ([segue.destinationViewController isKindOfClass:[FormVC class]]) {
             FormVC *fvc = segue.destinationViewController;
-            fvc.data = self.data;
             fvc.key = self.key;
             fvc.isEditForm = YES;
         }
     }
 }
 
-- (UIImage *)decodeImage:(NSString *)encodedImage {
-    NSData *decodedData = [[NSData alloc]
-                           initWithBase64EncodedString:encodedImage
-                           options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    UIImage *image = [UIImage imageWithData:decodedData];
-    return image;
-}
-
 - (IBAction)toDetailVC:(UIStoryboardSegue *)sender
 {
     
 }
-
 
 
 @end

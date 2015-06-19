@@ -1,19 +1,19 @@
 //
-//  Greek_GodsTests.m
-//  Greek-GodsTests
+//  greekgods_parseTests.m
+//  greekgods-parseTests
 //
-//  Created by Ashley Ng on 6/1/15.
+//  Created by Ashley Ng on 6/6/15.
 //  Copyright (c) 2015 Ashley Ng. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface Greek_GodsTests : XCTestCase
+@interface greekgods_parseTests : XCTestCase
 
 @end
 
-@implementation Greek_GodsTests
+@implementation greekgods_parseTests
 
 - (void)setUp {
     [super setUp];

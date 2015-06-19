@@ -1,24 +1,23 @@
 //
 //  FormVC.m
-//  Greek-Gods
+//  greekgods-parse
 //
-//  Created by Ashley Ng on 6/1/15.
+//  Created by Ashley Ng on 6/6/15.
 //  Copyright (c) 2015 Ashley Ng. All rights reserved.
 //
 
 #import "FormVC.h"
-#import <Firebase/Firebase.h>
-#import "GreekGodDetailVC.h"
-#import <Foundation/Foundation.h>
-//#import "NSStrinAdditions.h"
+#import "Parse/Parse.h"
 
 @interface FormVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
 @property (strong, nonatomic) IBOutlet UITextField *romanField;
-@property (strong, nonatomic) IBOutlet UITextView *repField;
-@property (strong, nonatomic) IBOutlet UITextView *symbolField;
+@property (strong, nonatomic) IBOutlet UITextView *repText;
+@property (strong, nonatomic) IBOutlet UITextView *symbolsText;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *submitButton;
 @property (strong, nonatomic) IBOutlet UIImageView *image;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *backButton;
+@property (strong, nonatomic) PFObject *parseObject; // only for edit form
 
 @end
 
@@ -28,8 +27,11 @@
     [super viewDidLoad];
     
     // on edit form
-    if (self.isEditForm)
+    if (self.isEditForm) {
+        PFQuery *query = [PFQuery queryWithClassName:@"GreekGod"];
+        self.parseObject = [query getObjectWithId:self.key];
         [self editFormSetup];
+    }
     else
         self.submitButton.title = @"Sumbit";
 }
@@ -41,82 +43,61 @@
 - (void)editFormSetup
 {
     self.submitButton.title = @"Done";
-    self.nameField.text = [self.data valueForKey:@"name"];
-    self.romanField.text = [self.data valueForKey:@"roman"];
-    self.repField.text = [[self.data valueForKey:@"rep"] componentsJoinedByString:@","];
-    self.symbolField.text = [[self.data valueForKey:@"symbol"] componentsJoinedByString:@","];
-    if (![[self.data valueForKey:@"image"] isEqualToString:@""]) {
-        self.image.image = [self decodeImage:[self.data valueForKey:@"image"]];
+    self.nameField.text = [self.parseObject objectForKey:@"name"];
+    self.romanField.text = [self.parseObject objectForKey:@"roman"];
+    self.repText.text = [[self.parseObject objectForKey:@"reps"] componentsJoinedByString:@","];
+    self.symbolsText.text = [[self.parseObject objectForKey:@"symbol"] componentsJoinedByString:@","];
+    if ([self.parseObject objectForKey:@"imageFile"]) {
+        PFFile *image = [self.parseObject objectForKey:@"imageFile"];
+        NSData *imageData = [image getData];
+        self.image.image = [UIImage imageWithData:imageData];
     }
 }
 
-
 /*
- when submit/done button is tapped
+ tapped the submit/done button
  */
-- (IBAction)submitForm:(id)sender
+- (IBAction)submitButtonTapped:(id)sender
 {
-    // format symbols and representation fields into arrays
-    NSArray *symbols = [self.symbolField.text componentsSeparatedByString:@","];
-    NSArray *reps = [self.repField.text componentsSeparatedByString:@","];
-    symbols = [self formatArray:symbols];
-    reps = [self formatArray:reps];
-    
-    // put form field data in a dictionary
-    NSDictionary *data = @{
-                           @"name" : self.nameField.text,
-                           @"roman" : self.romanField.text,
-                           @"symbol" : symbols,
-                           @"rep" : reps,
-                           @"image" : [self encodeImage:self.image.image]
-                           };
-    
-    // firebase set up
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
-    
-    
     if (self.isEditForm) {
         // if editting, update child and segue back to detail view controller
-        Firebase *godRef = [ref childByAppendingPath:self.key];
-        [godRef updateChildValues: data];
+        [self submitFormWithPFObject:self.parseObject];
         [self performSegueWithIdentifier:@"toDetailVC" sender:self];
     }
     else {
         // if submit a new entry, setValue of new entry and segue back to table view
-        Firebase *godRef = [ref childByAutoId];
-        [godRef setValue: data];
+        PFObject *newObject = [PFObject objectWithClassName:@"GreekGod"];
+        [self submitFormWithPFObject:newObject];
         [self performSegueWithIdentifier:@"toTableVC" sender:self];
     }
 }
 
-#pragma mark encode/decode image
-
 /*
-    encode an image into a base64 string
+    fill out appropriate fileds in PFObject and save it in database
  */
-- (NSString *)encodeImage:(UIImage *)image {
-    // convert UIImage to NSData
-    NSData *dataImage = UIImagePNGRepresentation(image);
-    
-    // encode NSDate to base64 NSString
-    NSString *encodedImage = [dataImage base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    return encodedImage;
+- (void)submitFormWithPFObject: (PFObject *)parseObject
+{
+    parseObject[@"name"] = self.nameField.text;
+    parseObject[@"roman"] = self.romanField.text;
+    parseObject[@"reps"] = [self formatArray:[self.symbolsText.text componentsSeparatedByString:@","]];;
+    parseObject[@"symbols"] = [self formatArray:[self.repText.text componentsSeparatedByString:@","]];
+    if (self.image.image) {
+        NSData *imageData = UIImagePNGRepresentation(self.image.image);
+        PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@-image.png", self.nameField.text] data:imageData];
+        parseObject[@"imageFile"] = imageFile;
+    }
+    [parseObject save];
+    NSLog(@"object updated in database");
+
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 /*
-    decode a string to an image
- */
-- (UIImage *)decodeImage:(NSString *)encodedImage {
-    //convert string to NSDate
-    NSData *decodedData = [[NSData alloc]
-                           initWithBase64EncodedString:encodedImage
-                           options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    // make image with NSdata
-    UIImage *image = [UIImage imageWithData:decodedData];
-    return image;
-}
-/*
- get's rid of trailing and leading white spaces in an 
+ get's rid of trailing and leading white spaces in an
  array entry
  */
 - (NSArray *)formatArray: (NSArray *)unformatedArray {
@@ -132,6 +113,7 @@
     }
     return returnArray;
 }
+
 
 # pragma mark Image Uploading
 
@@ -159,12 +141,10 @@
     
 }
 
-#pragma mark Navigation
 
-/*
- tapped back button. Send you to the correct view depending of editing or submiting
- a new entry
- */
+#pragma mark - Navigation
+
+
 - (IBAction)goBackButton:(id)sender {
     if (self.isEditForm) {
         [self performSegueWithIdentifier:@"toDetailVC" sender:self];
@@ -174,8 +154,6 @@
     }
     
 }
-
-
 - (IBAction)toTableVC:(UIStoryboardSegue *)segue
 {
     

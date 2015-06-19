@@ -1,12 +1,13 @@
 //
 //  AppDelegate.m
-//  Greek-Gods
+//  greekgods-parse
 //
-//  Created by Ashley Ng on 6/1/15.
+//  Created by Ashley Ng on 6/6/15.
 //  Copyright (c) 2015 Ashley Ng. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "Parse/Parse.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [Parse setApplicationId:@"gbrGMVOshwlCkluEX7sx6B6JLZsvAkK0ecHCF2q5"
+                  clientKey:@"mrvA8yPbo0XudCUp4luDVWUxW3ECYTfQcYyZr5mz"];
     return YES;
 }
 
