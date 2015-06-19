@@ -32,7 +32,7 @@
     Firebase *ref = [[Firebase alloc] initWithUrl:FIREBASE_URL];
 
     // get and store data from database
-    [ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+    [ref observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         self.data = snapshot.value;
         self.keys = [self.data allKeys];
         NSLog(@"Data successfully retieved and stored");
@@ -68,6 +68,21 @@
     cell.textLabel.text = [[self.data valueForKey:key] valueForKey:@"name"];
     
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSString *key = self.keys[indexPath.row];
+        Firebase *ref = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@%@",FIREBASE_URL, key]];
+        [ref removeValue];
+        NSLog(@"Value Removed");
+        
+    }
 }
 
 
