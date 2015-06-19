@@ -10,6 +10,7 @@
 #import <Firebase/Firebase.h>
 #import "GreekGodDetailVC.h"
 #import <Foundation/Foundation.h>
+#import "constants.h"
 //#import "NSStrinAdditions.h"
 
 @interface FormVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -73,7 +74,7 @@
                            };
     
     // firebase set up
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
+    Firebase *ref = [[Firebase alloc] initWithUrl:FIREBASE_URL];
     
     if (self.isEditForm) {
         // if editting, update child and segue back to detail view controller

@@ -1,0 +1,89 @@
+{ "results": [
+	{
+        "createdAt": "2015-06-06T20:41:23.836Z",
+        "name": "Poseidon",
+        "objectId": "GXlMIeNTGB",
+        "reps": [
+            "sea"
+        ],
+        "roman": "Neptune",
+        "symbol": [
+            "trident",
+            "fish",
+            "dolphin",
+            "horse",
+            "bull"
+        ],
+        "updatedAt": "2015-06-06T20:42:11.050Z"
+    },
+	{
+        "createdAt": "2015-06-07T00:06:13.793Z",
+        "name": "Apollo",
+        "objectId": "nuTPYz67pp",
+        "reps": [
+            "God/des Symbols"
+        ],
+        "roman": "Apollo",
+        "symbol": [
+            "God/des Representation"
+        ],
+        "updatedAt": "2015-06-07T00:06:13.793Z"
+    },
+	{
+        "createdAt": "2015-06-06T20:24:10.619Z",
+        "name": "Athena",
+        "objectId": "SGiYWuaD3A",
+        "reps": [
+            "owls",
+            "olive tree",
+            "snakes",
+            "Aegis",
+            "armor",
+            "helmet",
+            "spears",
+            "gorgoneion"
+        ],
+        "roman": "Minerva",
+        "symbol": [
+            "owls",
+            "olive tree",
+            "snakes",
+            "Aegis",
+            "armor",
+            "helmet",
+            "spears",
+            "gorgoneion"
+        ],
+        "symbols": [
+            "owls",
+            "olive tree",
+            "snakes",
+            "Aegis",
+            "armor",
+            "helmet",
+            "spears",
+            "gorgoneion"
+        ],
+        "updatedAt": "2015-06-07T01:19:32.029Z"
+    },
+	{
+        "createdAt": "2015-06-07T01:46:44.500Z",
+        "imageFile": {
+            "__type": "File",
+            "name": "tfss-54d076d8-8c25-490c-8ad7-d2c9987a2917-Zeus-image.png",
+            "url": "http://files.parsetfss.com/28207bac-56ef-48df-83ce-c4af1085867f/tfss-54d076d8-8c25-490c-8ad7-d2c9987a2917-Zeus-image.png"
+        },
+        "name": "Zeus",
+        "objectId": "dCouMNIgpB",
+        "reps": [
+            "Eagle",
+            "lightning"
+        ],
+        "roman": "Jupiter",
+        "symbol": [
+            "Sky",
+            "thunder"
+        ],
+        "updatedAt": "2015-06-07T01:46:44.500Z"
+    }
+] }
