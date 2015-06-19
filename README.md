@@ -1,7 +1,7 @@
 Greek Gods
 ======================
 ##About
-The two apps have the exact same functionality, one just uses Firebase and the other Parse. The app allows retrieves, alters, adds, and deletes objects from its respective database as well as upload an image with each object.
+The two apps have the exact same functionality, one just uses Firebase and the other Parse. The app allows retrieves, alters, adds, and deletes objects from its respective database as well as upload an image with each object. Checkout the [wiki](https://github.com/ashleyng/GreekGods/wiki) for the comparison between Firebase and Parse
 
 ##Setup
 -----------
