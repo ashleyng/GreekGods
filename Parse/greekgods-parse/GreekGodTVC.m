@@ -18,12 +18,7 @@
 
 @implementation GreekGodTVC
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"Greek Gods";
-}
-
-- (void)viewDidAppear:(BOOL)animated {
+- (void)reloadTable {
     PFQuery *query = [PFQuery queryWithClassName:@"GreekGod"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -33,6 +28,16 @@
             NSLog(@"%@", error);
         }
     }];
+
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"Greek Gods";
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self reloadTable];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,6 +65,23 @@
     cell.textLabel.text = [self.data[indexPath.row] valueForKey:@"name"];
     
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        PFQuery *query = [PFQuery queryWithClassName:@"GreekGod"];
+        NSString *key = [self.data[indexPath.row] objectId];
+        PFObject *object = [query getObjectWithId: key];
+        [object delete];
+        NSLog(@"Object Removed");
+        [self reloadTable];
+        
+    }
 }
 
 
