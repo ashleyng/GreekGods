@@ -61,6 +61,7 @@
     NSArray *reps = [self.repField.text componentsSeparatedByString:@","];
     symbols = [self formatArray:symbols];
     reps = [self formatArray:reps];
+    NSString *encodedImage = self.image.image ? [self encodeImage:self.image.image]: @"";
     
     // put form field data in a dictionary
     NSDictionary *data = @{
@@ -68,12 +69,11 @@
                            @"roman" : self.romanField.text,
                            @"symbol" : symbols,
                            @"rep" : reps,
-                           @"image" : [self encodeImage:self.image.image]
+                           @"image" : encodedImage
                            };
     
     // firebase set up
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://greek-gods.firebaseio.com/"];
-    
     
     if (self.isEditForm) {
         // if editting, update child and segue back to detail view controller
